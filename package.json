@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "concurrently \"pnpm i\" \"pnpm tsc\"",
+    "build": "pnpm i && pnpm tsc",
     "start": "node build/index.js",
     "dev": "concurrently \"pnpm tsc --watch\" \"nodemon -q build/index.js\""
   },
