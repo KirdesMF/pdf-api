@@ -1,8 +1,10 @@
 import express, { Express, Request, Response } from "express";
+import { getPdf } from "./services/puppeteer";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+app.set("views", "src/views");
 app.set("view engine", "ejs");
 
 app.get("/", (req: Request, res: Response) => {
@@ -10,7 +12,9 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/invoices", (req: Request, res: Response) => {
-  res.render("header");
+  const pdf = getPdf("src/views/header.ejs");
+  res.contentType("application/pdf");
+  res.send(pdf);
 });
 
 app.listen(port, () => {
