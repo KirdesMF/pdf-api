@@ -4,7 +4,6 @@ import ejs from "ejs";
 export async function getPdf(template: string): Promise<Buffer> {
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--headless", "--no-sandbox", "--disable-dev-shm-usage"],
   });
   const page = await browser.newPage();
   const html = await ejs.renderFile(template);
